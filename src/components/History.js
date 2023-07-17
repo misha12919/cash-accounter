@@ -11,62 +11,74 @@ export const History = () => {
     {
       name: "Зимняя куртка",
       cost: "13790 руб.",
-      date: "15.07.2023"
+      date: "15.07.2023",
+      id: 0
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 1
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 2
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 3
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 4
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 5
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 6
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 7
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 8
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 9
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 10
     },
     {
       name: "Перчатки",
       cost: "1679 руб.",
-      date: "13.07.2023"
+      date: "13.07.2023",
+      id: 11
     },
   ])
 
@@ -101,7 +113,7 @@ export const History = () => {
 
       {items.map((item) => {
         return (
-          <div className="history__item">
+          <div className="history__item" key={item.id}>
             <div className="history__item__name">{item.name}</div>
             <div className="history__item__cost">{item.cost}</div>
             <div className="history__item__date">{item.date}</div>
