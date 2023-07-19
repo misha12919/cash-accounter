@@ -96,7 +96,7 @@ function App() {
   const currDate = new Date()
 
   const getDateNow = () => {
-    return `${currDate.toDateString().split(' ')[3]}-${currDate.getMonth().toString().length<2 ? `0${currDate.getMonth()}` : currDate.getMonth()}-${currDate.toDateString().split(' ')[2]}`
+    return `${currDate.toDateString().split(' ')[3]}-${currDate.getMonth().toString().length<2 ? `0${currDate.getMonth()+1}` : currDate.getMonth()+1}-${currDate.toDateString().split(' ')[2]}`
   }
 
   return (
