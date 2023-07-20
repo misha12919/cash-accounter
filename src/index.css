@@ -205,7 +205,7 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
 }
 
-.history__search {
+.history__filter {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,17 +215,17 @@ input::-webkit-inner-spin-button {
   background-color: var(--primary-color);
 }
 
-.history__search__group {
+.history__filter__group {
   display: flex;
   gap: 10px;
 }
 
-.history__search__text {
+.history__filter__text {
   font-size: 24px;
   line-height: 150%;
 }
 
-.history__search__input {
+.history__filter__input {
   width: 200px;
   height: 34px;
   font-size: 20px;
@@ -235,15 +235,15 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
 }
 
-.history__search__input--date {
+.history__filter__input--date {
   width: 150px;
 }
 
-.history__search__input-date-group {
+.history__filter__input-date-group {
   position: relative;
 }
 
-.history__search__input-date-icon {
+.history__filter__input-date-icon {
   position: absolute;
   right: 10px;
   top: 46%;

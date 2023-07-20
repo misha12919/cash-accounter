@@ -1,20 +1,23 @@
+import { useState } from "react"
 
 export const History = ({historyItems, getDateNow}) => {
 
+  const [filter, setFilter] = useState(['',''])
+
   return (<div className="history">
     
-    <div className="history__search">
+    <div className="history__filter">
 
-      <div className="history__search__group">
-        <div className="history__search__text">По слову(ам):</div>
-        <input className="history__search__input"></input>
+      <div className="history__filter__group">
+        <div className="history__filter__text">По слову(ам):</div>
+        <input className="history__filter__input" onChange={()=>{setFilter(prev => [document.querySelector('.history__filter__input').value, prev[1]])}}></input>
       </div>
 
-      <div className="history__search__group">
-        <div className="history__search__text">По дате:</div>
-        <div className="history__search__input-date-group">
-          <input className="history__search__input history__search__input--date" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
-          <div className="history__search__input-date-icon">
+      <div className="history__filter__group">
+        <div className="history__filter__text history__filter__text--date">По дате:</div>
+        <div className="history__filter__input-date-group">
+          <input className="history__filter__input history__filter__input--date" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
+          <div className="history__filter__input-date-icon">
             <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
               <g>
                 <path  d="M60,4h-7V3c0-1.657-1.343-3-3-3s-3,1.343-3,3v1H17V3c0-1.657-1.343-3-3-3s-3,1.343-3,3v1H4
@@ -41,13 +44,17 @@ export const History = ({historyItems, getDateNow}) => {
     <div className="history__items" style={{ gridTemplate: `repeat(${Math.ceil(historyItems.length/4)}, 185px) / repeat(4, 185px)` }}>
 
       {historyItems.map((item) => {
-        return (
-          <div className="history__item" key={item.id}>
-            <div className="history__item__name">{item.name}</div>
-            <div className="history__item__cost">{`${item.cost} руб.`}</div>
-            <div className="history__item__date">{`${item.date.day}.${item.date.month}.${item.date.year}`}</div>
-          </div>
-        )
+        if (item.name.toLowerCase().includes(filter[0].toLowerCase())) {
+          return (
+            <div className="history__item" key={item.id}>
+              <div className="history__item__name">{item.name}</div>
+              <div className="history__item__cost">{`${item.cost} руб.`}</div>
+              <div className="history__item__date">{`${item.date.day}.${item.date.month}.${item.date.year}`}</div>
+            </div>
+          )
+        } else {
+          return null
+        }
       })}
 
     </div>
