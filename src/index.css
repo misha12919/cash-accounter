@@ -8,6 +8,8 @@
 :root {
   --primary-color: rgb(141, 207, 42);
   --additional-color: #111;
+  --hover-primary-color: rgb(92, 250, 52);
+  --hover-additional-color: #2b2a2a;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -26,7 +28,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 960px;
-  height: 100vh;
+  height: 100%;
   padding-top: 60px;
 }
 
@@ -82,6 +84,7 @@ body {
 /* forms ======================================================================================== */
 
 .forms {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,6 +95,10 @@ body {
   border-radius: 20px;
 }
 
+.forms:hover .form__group__plus {
+  opacity: 1;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -100,24 +107,34 @@ body {
 }
 
 .form__title {
+  padding-bottom: 15px;
   font-size: 24px;
   color: var(--primary-color);
 }
 
+
 .form__group {
-  position: relative;
-  display: flex;
-  gap: 25px;
-  margin-top: 30px;
-  padding-right: 70px;
+  display: grid;
+  grid-template: 90px 90px / 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 15px;
 }
 
 .form__group__info {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 5px;
+  width: 100%;
+  padding: 0px 30px;
   color: var(--primary-color);
   border-radius: 10px;
+}
+
+.form__group__info--name {
+  grid-column: 1 / 5;
 }
 
 .form__group__info__text {
@@ -130,8 +147,11 @@ input::-webkit-inner-spin-button {
 }
 
 .form__group__info__input {
-  width:  150px;
-  height: 34px;
+  min-width: 200px;
+  width:  100%;
+  height: 40px;
+
+  padding: 0 10px;
 
   background-color: var(--additional-color);
   color: var(--primary-color);
@@ -141,6 +161,8 @@ input::-webkit-inner-spin-button {
 
   border: 2px solid var(--primary-color);
   border-radius: 10px;
+
+  cursor: text;
 }
 
 .form__group__info__input-date-group {
@@ -160,13 +182,15 @@ input::-webkit-inner-spin-button {
 
 .form__group__plus {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 48px;
+  right: 45px;
   width: 30px;
   height: 30px;
   border: 2px solid var(--primary-color);
   border-radius: 10px;
   cursor: pointer;
+  opacity: 0;
+  transition: 0.2s;
 }
 
 .form__group__plus::before {
@@ -178,6 +202,10 @@ input::-webkit-inner-spin-button {
   width: 60%;
   height: 2px;
   background-color: var(--primary-color);
+}
+
+.form__group__plus:hover {
+  border-color: var(--hover-primary-color); 
 }
 
 .form__group__plus::after {
@@ -198,7 +226,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 40px;
   width: 100%;
   margin-top: 30px;
   border: 5px solid var(--primary-color);
@@ -233,6 +261,7 @@ input::-webkit-inner-spin-button {
   background-color: var(--primary-color);
   border: 2px solid var(--additional-color);
   border-radius: 10px;
+  cursor: text;
 }
 
 .history__filter__input--date {
@@ -260,21 +289,55 @@ input::-webkit-inner-spin-button {
 }
 
 .history__items {
-  display: grid;
-  grid-template: 100px / repeat(4, 185px);
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  padding: 0 75px 30px;
+  padding-bottom: 30px;
 }
 
 .history__item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
   align-items: center;
-  gap: 20px;
-  padding: 10px;
-  background-color: var(--primary-color);
+  grid-template: 30px 30px / 1fr 1fr 1fr;
+  gap: 20px 0;
+  width: 100%;
+  padding: 30px 75px;
+  border-bottom: 2px solid var(--primary-color);
+  background-color: var(--additional-color);
+  color: var(--primary-color);
   font-size: 20px;
-  border-radius: 20px;
+}
+
+.history__item:first-child {
+  border-top: 2px solid var(--primary-color);
+}
+
+.history__item__name {
+  grid-column: 1 / 4;
+  font-size: 24px;
+}
+
+.history__item__quantity {
+  justify-self: left;
+}
+
+.history__item__date {
+  justify-self: right;
+}
+
+.history__items__pagination-button {
+  margin-top: 30px;
+  padding: 10px 15px;
+  background-color: var(--primary-color);
+  color: var(--additional-color);
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.history__items__pagination-button:hover {
+  background-color: var(--hover-primary-color);
 }

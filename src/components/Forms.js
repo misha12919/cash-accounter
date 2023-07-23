@@ -13,18 +13,25 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
     <div className="form">
       <div className="form__title">Добавить новую трату:</div>
       <div className="form__group">
-        <div className="form__group__info">
+
+        <div className="form__group__info form__group__info--name">
           <div className="form__group__info__text">Название:</div>
           <input className="form__group__info__input"></input>
           {/* <input className="form__group__info__input" onKeyUp={validate('form__group__info__input')}></input> */}
         </div>
+
         <div className="form__group__info">
           <div className="form__group__info__text">Стоимость:</div>
           <input className="form__group__info__input" type="number"></input>
         </div>
+
+        <div className="form__group__info">
+          <div className="form__group__info__text">Количество:</div>
+          <input className="form__group__info__input" type="number" defaultValue={1}></input>
+        </div>
+
         <div className="form__group__info">
           <div className="form__group__info__text">Дата:</div>
-
           <div className="form__group__info__input-date-group">
             <input className="form__group__info__input" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
             <div className="form__group__info__input-date-icon">
@@ -47,6 +54,7 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
             </div>
           </div>
         </div>
+
         <div className="form__group__plus" onClick={() => {
           addHistoryItem([...document.querySelectorAll('.form__group__info__input')].map((el) => {
             return el.value

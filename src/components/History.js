@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { Pagination } from "./Pagination"
 
 export const History = ({historyItems, getDateNow}) => {
 
   const [filter, setFilter] = useState(['',''])
+  const [numberOfItemsToShow, setNumberOfItemsToShow] = useState(2)
 
   return (<div className="history">
     
@@ -41,22 +43,34 @@ export const History = ({historyItems, getDateNow}) => {
     </div>
 
     <div className="history__title">История</div>
-    <div className="history__items" style={{ gridTemplate: `repeat(${Math.ceil(historyItems.length/4)}, 185px) / repeat(4, 185px)` }}>
+    <div className="history__items">
 
-      {historyItems.map((item) => {
-        if (item.name.toLowerCase().includes(filter[0].toLowerCase())) {
-          return (
-            <div className="history__item" key={item.id}>
-              <div className="history__item__name">{item.name}</div>
-              <div className="history__item__cost">{`${item.cost} руб.`}</div>
-              <div className="history__item__date">{`${item.date.day}.${item.date.month}.${item.date.year}`}</div>
-            </div>
-          )
-        } else {
-          return null
-        }
+      {historyItems.map((item, idx) => {
+        console.log(item);
+        if (item.name.toLowerCase().includes(filter[0].toLowerCase()) && numberOfItemsToShow > idx) {
+          if (item.quantity <= 1) {
+            return (
+              <div className="history__item" key={item.id}>
+                <div className="history__item__name">{item.name}</div>
+                <div className="history__item__date">{`${item.date.day}.${item.date.month}.${item.date.year}`}</div>
+                <div className="history__item__cost">{`${item.cost} руб.`}</div>
+                <div className="history__item__quantity">{`x${item.quantity ? item.quantity : 1}`}</div>
+              </div>
+            )
+          } else if (item.quantity > 1) {
+            return (
+              <div className="history__item" key={item.id}>
+                <div className="history__item__name">{item.name}</div>
+                <div className="history__item__date">{`${item.date.day}.${item.date.month}.${item.date.year}`}</div>
+                <div className="history__item__cost">{`${item.cost} руб.`}</div>
+                <div className="history__item__quantity">{`x${item.quantity} по ${item.costOfAPart} руб.`}</div>
+              </div>
+            )
+          } else return null
+        } else return null
       })}
-
+      <Pagination numberOfItemsToShow={numberOfItemsToShow} setNumberOfItemsToShow={setNumberOfItemsToShow} historyItems={historyItems}/>
+      
     </div>
   </div>)
 }

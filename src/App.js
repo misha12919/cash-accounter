@@ -8,6 +8,7 @@ function App() {
     {
       name: "Перчатки",
       cost: "1679",
+      quantity: 1,
       date: {
         day: '20',
         month: '07',
@@ -18,6 +19,7 @@ function App() {
     {
       name: "Зимняя куртка",
       cost: "13790",
+      quantity: 1,
       date: {
         day: '14',
         month: '07',
@@ -28,6 +30,7 @@ function App() {
     {
       name: "Шапка",
       cost: "2190",
+      quantity: 1,
       date: {
         day: '6',
         month: '07',
@@ -38,6 +41,7 @@ function App() {
     {
       name: "Шарф",
       cost: "780",
+      quantity: 1,
       date: {
         day: '2',
         month: '07',
@@ -48,6 +52,7 @@ function App() {
     {
       name: "Футболка",
       cost: "1830",
+      quantity: 1,
       date: {
         day: '24',
         month: '06',
@@ -61,12 +66,14 @@ function App() {
     setHistoryItems([{
 
       name: newItem[0].charAt(0).toUpperCase() + newItem[0].slice(1),
-      cost: `${newItem[1]}`,
+      costOfAPart: newItem[1],
+      quantity: Number(newItem[2]),
+      cost: newItem[1]*newItem[2],
       date: 
       {
-        year: Number(newItem[2].split('-')[0]),
-        month: Number(newItem[2].split('-')[1]),
-        day: Number(newItem[2].split('-')[2]),
+        year: newItem[3].split('-')[0],
+        month: newItem[3].split('-')[1],
+        day: newItem[3].split('-')[2],
       },
       id: 0
 
