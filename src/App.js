@@ -32,7 +32,7 @@ function App() {
       cost: "2190",
       quantity: 1,
       date: {
-        day: '6',
+        day: '06',
         month: '07',
         year: '2023',
       },
@@ -43,7 +43,7 @@ function App() {
       cost: "780",
       quantity: 1,
       date: {
-        day: '2',
+        day: '02',
         month: '07',
         year: '2023',
       },
@@ -63,24 +63,49 @@ function App() {
   ])
 
   const addHistoryItem = (newItem) => {
-    setHistoryItems([{
+    const newDate = {
+      newYear: newItem[3].split('-')[0],
+      newMonth: newItem[3].split('-')[1],
+      newDay: newItem[3].split('-')[2],
+    }
 
-      name: newItem[0].charAt(0).toUpperCase() + newItem[0].slice(1),
-      costOfAPart: newItem[1],
-      quantity: Number(newItem[2]),
-      cost: newItem[1]*newItem[2],
-      date: 
+    let newId = historyItems.length
+    for (let idx = 0; idx < historyItems.length; idx++) {
+      const el = historyItems[idx]
+      if (newDate.newYear >= el.date.year && newDate.newMonth >= el.date.month && newDate.newDay >= el.date.day) {
+        newId = idx
+        break
+      }
+    }
+
+    setHistoryItems([
+      ...historyItems.filter((_, idx)=>{
+        return idx < newId
+      }),
+
       {
-        year: newItem[3].split('-')[0],
-        month: newItem[3].split('-')[1],
-        day: newItem[3].split('-')[2],
-      },
-      id: 0
+        name: newItem[0].charAt(0).toUpperCase() + newItem[0].slice(1),
+        costOfAPart: newItem[1],
+        quantity: Number(newItem[2]),
+        cost: newItem[1]*newItem[2],
+        date: 
+        {
+          year: newDate.newYear,
+          month: newDate.newMonth,
+          day: newDate.newDay,
+        },
+        id: newId
+      }, 
 
-    }, ...historyItems.map((el)=>{
-      el.id = el.id+1
-      return el
-    })])
+      ...historyItems
+      .filter((_, idx)=>{
+        return idx >= newId
+      })
+      .map((el)=>{
+        el.id = el.id+1
+        return el
+      })
+    ])
   }
 
   const getDateNow = () => {

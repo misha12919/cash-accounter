@@ -46,7 +46,6 @@ export const History = ({historyItems, getDateNow}) => {
     <div className="history__items">
 
       {historyItems.map((item, idx) => {
-        console.log(item);
         if (item.name.toLowerCase().includes(filter[0].toLowerCase()) && numberOfItemsToShow > idx) {
           if (item.quantity <= 1) {
             return (

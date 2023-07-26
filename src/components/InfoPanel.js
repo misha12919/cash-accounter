@@ -2,8 +2,6 @@
 
 export const InfoPanel = ({historyItems, getDateNow}) => {
 
-
-
   const countAmountOfMoneySpent = () => {
     const [currDay, currMonth, currYear] = [Number(getDateNow().slice(-2)), Number(getDateNow().slice(-5, -3)), Number(getDateNow().slice(0,4))].map((el) => {
       return Number(el)
@@ -39,18 +37,22 @@ export const InfoPanel = ({historyItems, getDateNow}) => {
     <div className="info-panel">
       <div className="info-panel__title">Общая информация:</div>
       <div className="info-panel__items">
+        
         <div className="info-panel__item">
           <div className="info-panel__item__title">Расходы за сегодня</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[0] + ' руб.'}</div>
         </div>
+
         <div className="info-panel__item">
           <div className="info-panel__item__title">Расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[1] + ' руб.'}</div>
         </div>
+
         <div className="info-panel__item">
           <div className="info-panel__item__title">Средние расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[2] + ' руб.'}</div>
         </div>
+        
       </div>
     </div>
   )

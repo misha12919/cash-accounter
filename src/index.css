@@ -10,6 +10,8 @@
   --additional-color: #111;
   --hover-primary-color: rgb(92, 250, 52);
   --hover-additional-color: #2b2a2a;
+  --gray: #4b4b4b;
+  --transition-time: 0.5s;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -93,10 +95,6 @@ body {
   padding: 30px 80px;
   border: 5px solid var(--primary-color);
   border-radius: 20px;
-}
-
-.forms:hover .form__group__plus {
-  opacity: 1;
 }
 
 .form {
@@ -186,14 +184,14 @@ input::-webkit-inner-spin-button {
   right: 45px;
   width: 30px;
   height: 30px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--gray);
   border-radius: 10px;
   cursor: pointer;
-  opacity: 0;
-  transition: 0.2s;
+  transition: var(--transition-time);
+  pointer-events: none;
 }
 
-.form__group__plus::before {
+.form__group__plus::before, .form__group__plus::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -201,22 +199,21 @@ input::-webkit-inner-spin-button {
   transform: translate(-50%, -50%) rotate(90deg);
   width: 60%;
   height: 2px;
-  background-color: var(--primary-color);
-}
-
-.form__group__plus:hover {
-  border-color: var(--hover-primary-color); 
+  background-color: var(--gray);
+  transition: var(--transition-time);
 }
 
 .form__group__plus::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
-  height: 2px;
-  background-color: var(--primary-color);
+}
+
+.form__group__plus--active {
+  border-color: var(--primary-color); 
+  pointer-events: all;
+}
+
+.form__group__plus--active::before, .form__group__plus--active::after {
+  background-color: var(--primary-color); 
 }
 
 
