@@ -1,8 +1,4 @@
 export const HistoryItem = ({item, idx, numberOfItemsToShow, filter, removeHishtoryItem}) => {
-  console.log(typeof item.cost);
-  console.log(item.cost.length - 5);
-  console.log(((item.cost.length - 5) > 0 ? (item.cost.length - 5)*10 : 0));
-  console.log(`${110 + ((item.cost.length - 5) > 0 ? (item.cost.length - 5)*10 : 0)}px`);
   const width = `${110 + ((item.cost.toString().length - 5) > 0 ? (item.cost.toString().length - 5)*10 : 0)}px`
   if (item.name.toLowerCase().includes(filter[0].toLowerCase()) && numberOfItemsToShow > idx) {
     return (
