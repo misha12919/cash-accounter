@@ -33,7 +33,7 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
 
         <div className="form__group__info">
           <div className="form__group__info__text">Стоимость:</div>
-          <input className="form__group__info__input" mustnotbeempty='true' type="number" onChange={()=>{
+          <input className="form__group__info__input" type="number" mustnotbeempty='true' onChange={()=>{
             const plus = document.querySelector('.form__group__plus')
             const isInputsFilled = [...document.querySelectorAll('.form__group__info__input[mustnotbeempty]')].filter((el)=>{
               return el.value === ''
@@ -50,7 +50,18 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
 
         <div className="form__group__info">
           <div className="form__group__info__text">Количество:</div>
-          <input className="form__group__info__input" type="number" defaultValue={1}></input>
+          <input className="form__group__info__input" type="number" defaultValue={1} mustnotbeempty='true' onChange={()=>{
+            const plus = document.querySelector('.form__group__plus')
+            const isInputsFilled = [...document.querySelectorAll('.form__group__info__input[mustnotbeempty]')].filter((el)=>{
+              return el.value === ''
+            }).length === 0 ? true : false
+        
+            if (isInputsFilled) {
+              plus.classList.add('form__group__plus--active')
+            } else {
+              plus.classList.remove('form__group__plus--active')
+            }
+          }}></input>
         </div>
 
         <div className="form__group__info">

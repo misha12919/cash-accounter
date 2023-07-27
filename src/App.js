@@ -108,6 +108,19 @@ function App() {
     ])
   }
 
+  const removeHishtoryItem = (idToRemove) => {
+    setHistoryItems(historyItems
+    .filter((item)=>{
+      return item.id !== idToRemove
+    })
+    .map((item) => {
+      if (item.id > idToRemove) {
+        item.id -= 1
+      }
+      return item
+    }))
+  }
+
   const getDateNow = () => {
     const currDate = new Date()
     return `${currDate.toDateString().split(' ')[3]}-${currDate.getMonth().toString().length<2 ? `0${currDate.getMonth()+1}` : currDate.getMonth()+1}-${currDate.toDateString().split(' ')[2].length<2 ? `0${currDate.toDateString().split(' ')[2]}` : currDate.toDateString().split(' ')[2]}`
@@ -117,7 +130,7 @@ function App() {
     <div className="container">
       <InfoPanel historyItems={historyItems} getDateNow={getDateNow} />
       <Forms addHistoryItem={addHistoryItem} getDateNow={getDateNow}/>
-      <History historyItems={historyItems} getDateNow={getDateNow}/>
+      <History historyItems={historyItems} getDateNow={getDateNow} removeHishtoryItem={removeHishtoryItem} />
     </div>
   );
 }
