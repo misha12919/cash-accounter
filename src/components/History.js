@@ -4,26 +4,82 @@ import { HistoryItem } from "./HistoryItem"
 
 export const History = ({historyItems, getDateNow, removeHishtoryItem}) => {
 
-  const [filter, setFilter] = useState(['',''])
   const [numberOfItemsToShow, setNumberOfItemsToShow] = useState(5)
+  const [filter, setFilter] = useState({
+    words: '',
+    date: {
+      value: '',
+      changed: 'unchanged',
+      direction: 'onlyThisOne',
+    }
+  })
+  
+  const updateFilterWords = (e) => {
+    setFilter((prev) => {
+      return {
+        words: e.target.value,
+        date: prev.date
+      }
+    })
+  }
+
+  const updateFilterDate = (e) => {
+    setFilter((prev) => {
+      return {
+        words: prev.words,
+        date: {
+          value: e.target.value,
+          changed: 'changed',
+          direction: prev.date.direction
+        }
+      }
+    })
+  }
+
+  const updateFilterDirection = (e) => {
+    [...document.querySelectorAll('.history__filter__direction-button')].map((el) => {
+      return el.attributes.active.value = 'false'
+    })
+    e.target.attributes.active.value = 'true'
+    setFilter((prev) => {
+      return {
+        words: prev.words,
+        date: {
+          value: prev.date.value,
+          changed: prev.date.changed,
+          direction: e.target.dataset.direction
+        }
+      }
+    })
+  }
 
   if (historyItems.length === 0) {
     return <div className="history--empty">Добавте трату, и здесь появится история.</div>
   }
   else {
     return (<div className="history">
-      
+
+      <div className="history__title">История</div>
+
+      <div className="history__title-of-filter">Фильтр</div>
       <div className="history__filter">
 
         <div className="history__filter__group">
           <div className="history__filter__text">По слову(ам):</div>
-          <input className="history__filter__input" onChange={()=>{setFilter(prev => [document.querySelector('.history__filter__input').value, prev[1]])}}></input>
+          <input className="history__filter__input" onChange={(e) => {updateFilterWords(e)}}></input>
         </div>
 
         <div className="history__filter__group">
           <div className="history__filter__text history__filter__text--date">По дате:</div>
           <div className="history__filter__input-date-group">
-            <input className="history__filter__input history__filter__input--date" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
+            <input 
+              className="history__filter__input history__filter__input--date"
+              onChange={(e) => {updateFilterDate(e)}}
+              defaultValue={getDateNow()} 
+              type="date" 
+              min="2023-01-01" 
+              max="2024-12-31"
+            ></input>
             <div className="history__filter__input-date-icon">
               <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
                 <g>
@@ -43,11 +99,24 @@ export const History = ({historyItems, getDateNow, removeHishtoryItem}) => {
               </svg>
             </div>
           </div>
+          <div className="history__filter__direction-buttons">
+            <button 
+              className="history__filter__direction-button" 
+              data-direction='before' 
+              active='false'
+              onClick={(e) => {updateFilterDirection(e)}}
+            >До</button>
+            <button
+              className="history__filter__direction-button" 
+              data-direction='after' 
+              active='false'
+              onClick={(e) => {updateFilterDirection(e)}}
+            >После</button>
+          </div>
         </div>
 
       </div>
 
-      <div className="history__title">История</div>
       <div className="history__items">
 
         {historyItems.map((item, idx) => {

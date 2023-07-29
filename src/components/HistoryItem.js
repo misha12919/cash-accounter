@@ -1,6 +1,61 @@
 export const HistoryItem = ({item, idx, numberOfItemsToShow, filter, removeHishtoryItem}) => {
   const width = `${110 + ((item.cost.toString().length - 5) > 0 ? (item.cost.toString().length - 5)*10 : 0)}px`
-  if (item.name.toLowerCase().includes(filter[0].toLowerCase()) && numberOfItemsToShow > idx) {
+  const dateString = Object.keys(item.date).reverse().map(key => item.date[key]).join('-')
+  const filterDate = {
+    year: Number(filter.date.value.split('-')[0]),
+    month: Number(filter.date.value.split('-')[1]),
+    day: Number(filter.date.value.split('-')[2]),
+  }
+  const itemDate = {
+    year: Number(item.date.year),
+    month: Number(item.date.month),
+    day: Number(item.date.day)
+  }
+  
+  let renderComponent = false
+
+  // if (item.name.toLowerCase().includes(filter[0].toLowerCase()) && 
+  // (Object.keys(item.date).reverse().map(key => item.date[key]).join('-') === filter[1][0] || filter[1][1] === 'unchanged') && 
+  // numberOfItemsToShow > idx) {
+
+  if (numberOfItemsToShow > idx &&
+  item.name.toLowerCase().includes(filter.words.toLowerCase())) {
+
+    if (filter.date.changed === 'unchanged' || filter.date.value === dateString) {
+      renderComponent = true
+      
+    } else if (filter.date.direction === 'after') {
+      if (itemDate.year > filterDate.year) {
+        renderComponent = true
+      } else if (itemDate.year === filterDate.year) {
+        if (itemDate.month > filterDate.month) {
+          renderComponent = true
+        } else if (itemDate.month === filterDate.month) {
+          if (itemDate.day > filterDate.day) {
+            renderComponent = true
+          }
+        }
+      }
+  
+    } else if (filter.date.direction === 'before') {
+      if (itemDate.year < filterDate.year) {
+        renderComponent = true
+      } else if (itemDate.year === filterDate.year) {
+        if (itemDate.month < filterDate.month) {
+          renderComponent = true
+        } else if (itemDate.month === filterDate.month) {
+          if (itemDate.day < filterDate.day) {
+            renderComponent = true
+          }
+        }
+      }
+    }
+  }
+  // (filter.date.direction === 'after' && 
+  // itemDate.year >= filterDate.year && itemDate.month >= filterDate.month && itemDate.day >= filterDate.day) || 
+  // (filter.date.direction === 'before' && 
+  // filterDate.year >= itemDate.year && filterDate.month >= itemDate.month && filterDate.day >= itemDate.day)))}
+  if (renderComponent) {
     return (
       <div className="history__item" key={item.id}>
         <div className="history__item__name">
@@ -19,5 +74,7 @@ export const HistoryItem = ({item, idx, numberOfItemsToShow, filter, removeHisht
         </div>
       </div>
     )
-  } else return null
+  } else {
+    return null
+  }
 }
