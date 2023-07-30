@@ -13,10 +13,18 @@
   --hover-additional-color: #2b2a2a;
   --gray: #4b4b4b;
   --transition-time: 0.2s;
+  --very-big-font-size: 35px;
+  --big-font-size: 25px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 body {
@@ -35,7 +43,6 @@ body {
   padding-top: 60px;
 }
 
-
 /* Info-panel ======================================================================================== */
 
 .info-panel {
@@ -50,7 +57,7 @@ body {
 }
 
 .info-panel__title {
-  font-size: 35px;
+  font-size: var(--very-big-font-size);
   color: var(--primary-color);
 }
 
@@ -67,7 +74,7 @@ body {
   justify-content: space-around;
   align-items: center;
   width: 200px;
-  height: 300px;
+  aspect-ratio: 2/3;
   background-color: var(--primary-color);
   border-radius: 30px;
   padding: 10px 20px 20px;
@@ -106,7 +113,7 @@ body {
 }
 
 .form__title {
-  font-size: 35px;
+  font-size: var(--very-big-font-size);
   color: var(--primary-color);
 }
 
@@ -132,7 +139,7 @@ body {
 }
 
 .form__group__info--name {
-  grid-column: 1 / 5;
+  grid-column: 1 / 4;
 }
 
 .form__group__info__text {
@@ -145,7 +152,6 @@ input::-webkit-inner-spin-button {
 }
 
 .form__group__info__input {
-  min-width: 200px;
   width:  100%;
   height: 40px;
 
@@ -173,7 +179,7 @@ input::-webkit-inner-spin-button {
   top: 50%;
   transform: translateY(-50%);
   width: 18px;
-  height: 18px;
+  aspect-ratio: 1;
   fill: var(--primary-color);
   pointer-events: none;
 }
@@ -244,7 +250,7 @@ input::-webkit-inner-spin-button {
 
 .history__title {
   margin-top: 30px;
-  font-size: 35px;
+  font-size: var(--very-big-font-size);
   color: var(--primary-color);
 }
 
@@ -345,6 +351,7 @@ input::-webkit-inner-spin-button {
 }
 
 .history__item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -363,7 +370,6 @@ input::-webkit-inner-spin-button {
 }
 
 .history__item__name {
-  position: relative;
   font-size: 24px;
 }
 
@@ -374,8 +380,8 @@ input::-webkit-inner-spin-button {
 
 .history__item__icon {
   position: absolute;
-  top: 0;
-  left: -60px;
+  top: 20px;
+  left: 20px;
   width: 30px;
   height: 30px;
   stroke: red;
@@ -410,4 +416,75 @@ input::-webkit-inner-spin-button {
 
 .history__items__pagination-button:hover {
   background-color: var(--hover-primary-color);
+}
+
+
+
+@media (width < 992px) {
+  .container {
+    width: 100%;
+    padding: 60px 20px;
+  }
+
+  .info-panel__items {
+    gap: 10px;
+  }
+  .info-panel__item {
+    aspect-ratio: 3/4;
+  }
+
+  .form__group__info__input--date {
+    font-size: 16px;
+  }
+  .form__group__info__input-date-icon {
+    width: 10px;
+  }
+
+  .history__filter {
+    gap: 15px;
+  }
+  .history__filter__text {
+    font-size: 20px;
+  }
+  .history__filter__input {
+    width: 150px;
+    font-size: 16px;
+  }
+  .history__filter__direction-button {
+    padding: 5px 2px;
+  }
+}
+
+@media (width < 768px) {
+  .info-panel__item {
+    width: 30%;
+  }
+  .info-panel__item__title {
+    font-size: 18px;
+  }
+  .info-panel__item__text {
+    font-size: 16px;
+  }
+
+  .form__group {
+    grid-template: 70px 70px 70px / 1fr 1fr;
+  }
+  .form__group__info--name,
+  .form__group__info--cost {
+    grid-column: 1/3;
+  }
+
+  .history__filter {
+    flex-direction: column;
+  }
+  .history__filter__text {
+    font-size: 22px;
+  }
+  .history__filter__input {
+    width: 180px;
+    font-size: 18px;
+  }
+  .history__filter__direction-button {
+    padding: 5px 10px;
+  }
 }

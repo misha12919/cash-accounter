@@ -10,3 +10,38 @@
     <div id="root"></div>
   </body>
 </html>
+
+
+	<!-- "dir or log": {
+		"scope": "javascript,typescript",
+		"prefix": "cd",
+		"body": [
+			"console.${2|dir,log|}(${TM_SELECTED_TEXT}$1)",
+		],
+		"description": "Log output to console"
+	},
+
+	"new component": {
+		"scope": "javascript,typescript",
+		"prefix": "nComponent",
+		"body": [
+			"export const ${TM_FILENAME_BASE} = ({$1}) => {",
+			"",
+			"  $2",
+			"",
+			"  return (",
+			"    $3",
+			"  )",
+			"}"
+		],
+		"description": "create new component"
+	},
+
+	"new element": {
+		"scope": "javascript,typescript",
+		"prefix": "nElement",
+		"body": [
+			"<${1|div,button,input|} className='$2'>${TM_SELECTED_TEXT:3}</${1|div,button,input|}>",
+		],
+		"description": "Create new element"
+	},

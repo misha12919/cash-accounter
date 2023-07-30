@@ -10,8 +10,8 @@ function App() {
       cost: "1679",
       quantity: 1,
       date: {
-        day: '02',
-        month: '08',
+        day: '28',
+        month: '07',
         year: '2023',
       },
       id: 0

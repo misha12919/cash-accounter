@@ -31,7 +31,7 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
           {/* <input className="form__group__info__input" onKeyUp={validate('form__group__info__input')}></input> */}
         </div>
 
-        <div className="form__group__info">
+        <div className="form__group__info form__group__info--cost">
           <div className="form__group__info__text">Стоимость:</div>
           <input className="form__group__info__input" type="number" mustnotbeempty='true' onChange={()=>{
             const plus = document.querySelector('.form__group__plus')
@@ -67,7 +67,7 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
         <div className="form__group__info">
           <div className="form__group__info__text">Дата:</div>
           <div className="form__group__info__input-date-group">
-            <input className="form__group__info__input" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
+            <input className="form__group__info__input form__group__info__input--date" name="tanggal" defaultValue={getDateNow()} type="date" min="2023-01-01" max="2024-12-31"></input>
             <div className="form__group__info__input-date-icon">
               <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enableBackground="new 0 0 64 64">
                 <g>
