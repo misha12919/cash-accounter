@@ -38,9 +38,17 @@ export const InfoPanel = ({historyItems, getDateNow}) => {
       <div className="info-panel__title">Общая информация:</div>
       <div className="info-panel__items">
         
-        <a className="info-panel__item" href="#history" style={{outline: 'none'}}>
-          <div className="info-panel__item__title" style={{outline: 'none'}}>Расходы за сегодня</div>
-          <div className="info-panel__item__text" style={{outline: 'none'}}>{countAmountOfMoneySpent()[0] + ' руб.'}</div>
+        <a 
+          className="info-panel__item info-panel__item--today" 
+          href="#history" 
+          onClick={()=>{
+            let count = 0
+            for (let i = 0; i < historyItems.length; i++) {
+              if ([hi])
+            }
+          }}>
+          <div className="info-panel__item__title">Расходы за сегодня</div>
+          <div className="info-panel__item__text">{countAmountOfMoneySpent()[0] + ' руб.'}</div>
         </a>
 
         <a className="info-panel__item" href="#history">
