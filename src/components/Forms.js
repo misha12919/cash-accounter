@@ -9,7 +9,7 @@ export const Forms = ({addHistoryItem, getDateNow}) => {
   //   }
   // };
 
-  return <div className="forms">
+  return <div className="forms" id='forms'>
     <div className="form">
       <div className="form__title">Добавить новую трату:</div>
       <div className="form__group">

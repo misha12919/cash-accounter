@@ -62,7 +62,7 @@ export const History = ({ historyItems, getDateNow, removeHishtoryItem }) => {
     );
   } else {
     return (
-      <div className="history">
+      <div className="history" id='history'>
         <div className="history__title">История</div>
 
         <div className="history__title-of-filter">Фильтр</div>
@@ -142,6 +142,28 @@ export const History = ({ historyItems, getDateNow, removeHishtoryItem }) => {
               </button>
             </div>
           </div>
+          <div className="history__filter__direction-buttons-for-mini-screen">
+              <button
+                className="history__filter__direction-button"
+                data-direction="before"
+                active="false"
+                onClick={(e) => {
+                  updateFilterDirection(e);
+                }}
+              >
+                До
+              </button>
+              <button
+                className="history__filter__direction-button"
+                data-direction="after"
+                active="false"
+                onClick={(e) => {
+                  updateFilterDirection(e);
+                }}
+              >
+                После
+              </button>
+            </div>
         </div>
 
         <div className="history__items">

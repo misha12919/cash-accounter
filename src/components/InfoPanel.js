@@ -34,24 +34,24 @@ export const InfoPanel = ({historyItems, getDateNow}) => {
   }
 
   return (
-    <div className="info-panel">
+    <div className="info-panel" id='info-panel'>
       <div className="info-panel__title">Общая информация:</div>
       <div className="info-panel__items">
         
-        <div className="info-panel__item">
-          <div className="info-panel__item__title">Расходы за сегодня</div>
-          <div className="info-panel__item__text">{countAmountOfMoneySpent()[0] + ' руб.'}</div>
-        </div>
+        <a className="info-panel__item" href="#history" style={{outline: 'none'}}>
+          <div className="info-panel__item__title" style={{outline: 'none'}}>Расходы за сегодня</div>
+          <div className="info-panel__item__text" style={{outline: 'none'}}>{countAmountOfMoneySpent()[0] + ' руб.'}</div>
+        </a>
 
-        <div className="info-panel__item">
+        <a className="info-panel__item" href="#history">
           <div className="info-panel__item__title">Расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[1] + ' руб.'}</div>
-        </div>
+        </a>
 
-        <div className="info-panel__item">
+        <a className="info-panel__item" href="#history">
           <div className="info-panel__item__title">Средние расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[2] + ' руб.'}</div>
-        </div>
+        </a>
         
       </div>
     </div>

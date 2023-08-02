@@ -2,6 +2,7 @@ import { InfoPanel } from "./components/InfoPanel";
 import { Forms } from "./components/Forms";
 import { History } from "./components/History";
 import { useState } from "react";
+import { Nav } from "./components/Nav";
 
 function App() {
   const [historyItems, setHistoryItems] = useState([
@@ -127,7 +128,8 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="container"> 
+      <Nav />
       <InfoPanel historyItems={historyItems} getDateNow={getDateNow} />
       <Forms addHistoryItem={addHistoryItem} getDateNow={getDateNow}/>
       <History historyItems={historyItems} getDateNow={getDateNow} removeHishtoryItem={removeHishtoryItem} />
