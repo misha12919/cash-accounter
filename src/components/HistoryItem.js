@@ -21,6 +21,8 @@ export const HistoryItem = ({item, idx, numberOfItemsToShow, filter, removeHisht
   if (numberOfItemsToShow > idx &&
   item.name.toLowerCase().includes(filter.words.toLowerCase())) {
 
+    console.log(filter.date.value, dateString);
+
     if (filter.date.changed === 'unchanged' || filter.date.value === dateString) {
       renderComponent = true
       

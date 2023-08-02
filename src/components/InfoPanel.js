@@ -1,6 +1,6 @@
 
 
-export const InfoPanel = ({historyItems, getDateNow}) => {
+export const InfoPanel = ({historyItems, getDateNow, setNumberOfItemsToShow, setPaginationText}) => {
 
   const countAmountOfMoneySpent = () => {
     const [currDay, currMonth, currYear] = [Number(getDateNow().slice(-2)), Number(getDateNow().slice(-5, -3)), Number(getDateNow().slice(0,4))].map((el) => {
@@ -44,22 +44,26 @@ export const InfoPanel = ({historyItems, getDateNow}) => {
           onClick={()=>{
             let count = 0
             for (let i = 0; i < historyItems.length; i++) {
-              if ([hi])
+              if ([historyItems[i].date.year, historyItems[i].date.month, historyItems[i].date.day].join('-') === getDateNow()) {
+                count += 1
+              }
             }
+            setNumberOfItemsToShow(count)
+            setPaginationText('Показать историю других дат')
           }}>
           <div className="info-panel__item__title">Расходы за сегодня</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[0] + ' руб.'}</div>
         </a>
 
-        <a className="info-panel__item" href="#history">
+        <div className="info-panel__item">
           <div className="info-panel__item__title">Расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[1] + ' руб.'}</div>
-        </a>
+        </div>
 
-        <a className="info-panel__item" href="#history">
+        <div className="info-panel__item">
           <div className="info-panel__item__title">Средние расходы за месяц</div>
           <div className="info-panel__item__text">{countAmountOfMoneySpent()[2] + ' руб.'}</div>
-        </a>
+        </div>
         
       </div>
     </div>

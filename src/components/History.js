@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Pagination } from "./Pagination";
 import { HistoryItem } from "./HistoryItem";
 
-export const History = ({ historyItems, getDateNow, removeHishtoryItem }) => {
-  const [numberOfItemsToShow, setNumberOfItemsToShow] = useState(5);
+export const History = ({ historyItems, getDateNow, removeHishtoryItem, numberOfItemsToShow, setNumberOfItemsToShow, paginationText, setPaginationText }) => {
+  
   const [filter, setFilter] = useState({
     words: "",
     date: {
@@ -183,6 +183,8 @@ export const History = ({ historyItems, getDateNow, removeHishtoryItem }) => {
             numberOfItemsToShow={numberOfItemsToShow}
             setNumberOfItemsToShow={setNumberOfItemsToShow}
             historyItems={historyItems}
+            paginationText={paginationText}
+            setPaginationText={setPaginationText}
           />
         </div>
       </div>

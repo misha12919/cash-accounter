@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Nav } from "./components/Nav";
 
 function App() {
+  const [numberOfItemsToShow, setNumberOfItemsToShow] = useState(5);
+  const [paginationText, setPaginationText] = useState('Показать больше')
   const [historyItems, setHistoryItems] = useState([
     {
       name: "Перчатки",
@@ -73,11 +75,21 @@ function App() {
     let newId = historyItems.length
     for (let idx = 0; idx < historyItems.length; idx++) {
       const el = historyItems[idx]
-      if (newDate.newYear >= el.date.year && newDate.newMonth >= el.date.month && newDate.newDay >= el.date.day) {
+      // if (newDate.newYear >= el.date.year && newDate.newMonth >= el.date.month && newDate.newDay >= el.date.day) {
+      //   newId = idx
+      //   break
+      // }
+      if (newDate.newYear < el.date.year) {
+        newId = idx
+        break
+      } else if (newDate.newMonth < el.date.month) {
+        newId = idx
+        break
+      } else if (newDate.newDay <= el.date.day) {
         newId = idx
         break
       }
-    }
+    } 
 
     setHistoryItems([
       ...historyItems.filter((_, idx)=>{
@@ -130,9 +142,11 @@ function App() {
   return (
     <div className="container"> 
       <Nav />
-      <InfoPanel historyItems={historyItems} getDateNow={getDateNow} />
+      <InfoPanel historyItems={historyItems} getDateNow={getDateNow} setNumberOfItemsToShow={setNumberOfItemsToShow} setPaginationText={setPaginationText} />
       <Forms addHistoryItem={addHistoryItem} getDateNow={getDateNow}/>
-      <History historyItems={historyItems} getDateNow={getDateNow} removeHishtoryItem={removeHishtoryItem} />
+      <History historyItems={historyItems} getDateNow={getDateNow} removeHishtoryItem={removeHishtoryItem} 
+      numberOfItemsToShow={numberOfItemsToShow} setNumberOfItemsToShow={setNumberOfItemsToShow} 
+      paginationText={paginationText} setPaginationText={setPaginationText} />
     </div>
   );
 }
