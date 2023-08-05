@@ -231,17 +231,23 @@ input::-webkit-inner-spin-button {
   color: var(--primary-color);
 }
 
-.history__title-of-filter {
+.history__filter {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin-top: 30px;
+  border-top: 2px solid var(--primary-color);
+}
+
+.history__filter__title {
+  width: 100%;
   padding-top: 25px;
   font-size: 24px;
   color: var(--primary-color);
-  border-top: 2px solid var(--primary-color);
   text-align: center; 
 }
 
-.history__filter {
+.history__filter__groups {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -292,16 +298,16 @@ input::-webkit-inner-spin-button {
   pointer-events: none;
 }
 
-.history__filter__direction-buttons {
+.history__filter__buttons {
   display: flex;
   gap: 5px;
 }
 
-.history__filter__direction-buttons-for-mini-screen {
+.history__filter__buttons-for-mini-screen {
   display: none;
 }
 
-.history__filter__direction-button {
+.history__filter__button {
   padding: 5px 10px;
   background-color: transparent;
   color: var(--primary-color);
@@ -312,13 +318,13 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.history__filter__direction-button:hover {
+.history__filter__button:hover {
   border-color: var(--primary-color-light);
   color: var(--primary-color-light);
 
 }
 
-.history__filter__direction-button[active='true'] {
+.history__filter__button[active='true'] {
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
@@ -421,7 +427,7 @@ input::-webkit-inner-spin-button {
     width: 10px;
   }
 
-  .history__filter {
+  .history__filter__groups {
     gap: 15px;
   }
   .history__filter__text {
@@ -431,7 +437,7 @@ input::-webkit-inner-spin-button {
     width: 150px;
     font-size: 16px;
   }
-  .history__filter__direction-button {
+  .history__filter__button {
     padding: 5px 2px;
   }
 }
@@ -473,7 +479,7 @@ input::-webkit-inner-spin-button {
     right: 25px;
   }
 
-  .history__filter {
+  .history__filter__groups {
     flex-direction: column;
   }
 
@@ -486,15 +492,15 @@ input::-webkit-inner-spin-button {
     font-size: 18px;
   }
 
-  .history__filter__direction-buttons {
+  .history__filter__buttons {
     display: none;
   }
 
-  .history__filter__direction-buttons-for-mini-screen {
+  .history__filter__buttons-for-mini-screen {
     display: flex;
   }
 
-  .history__filter__direction-button {
+  .history__filter__button {
     padding: 5px 10px;
   }
 }
