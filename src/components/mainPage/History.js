@@ -59,15 +59,20 @@ export const History = ({ historyItems, getDateNow, removeHishtoryItem, numberOf
       [...document.querySelectorAll('.history__filter__button')].forEach((button) => {
         button.attributes.active.value = 'false'
       })
-      filter.date = {
-        value: getDateNow(),
-        changed: "unchanged",
-        direction: "onlyThisOne",
-      }
-      console.log(filter);
+      setFilter((prev)=>{
+        return {
+          words: prev.words,
+          date: {
+            value: "",
+            changed: "unchanged",
+            direction: "onlyThisOne",
+          },
+        }
+      })
+
+      document.querySelector('.history__filter__input--date').value = getDateNow()
     }
   }
-
 
   if (historyItems.length === 0) {
     return (
