@@ -29,8 +29,9 @@ export const InfoPanel = ({historyItems, getDateNow, setNumberOfItemsToShow, set
       averageMoneySpendInAMonths += monthsList[key]
     });  
 
-
-    return [countMoneySpendInADay, monthsList[Object.keys(monthsList)[0]], Math.round(averageMoneySpendInAMonths/Object.keys(monthsList).length)]
+    return [countMoneySpendInADay, 
+      monthsList[`${getDateNow().slice(0,4)}.${Number(getDateNow().slice(5,7))}`] ? monthsList[`${getDateNow().slice(0,4)}.${Number(getDateNow().slice(5,7))}`] : 0, 
+      Math.round(averageMoneySpendInAMonths/Object.keys(monthsList).length)]
   }
 
   return (

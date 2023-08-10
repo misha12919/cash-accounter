@@ -1,11 +1,11 @@
 import { InfoPanel } from "./components/mainPage/InfoPanel";
 import { Forms } from "./components/mainPage/Forms";
 import { History } from "./components/mainPage/History";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav } from "./components/mainPage/Nav";
 import './css/mainPage.css';
 
-function MainPage({setPageToRender}) {
+function MainPage({setPageToRender, moneySpentInAMonths, setMoneySpentInAMonths}) {
   const [numberOfItemsToShow, setNumberOfItemsToShow] = useState(5);
   const [paginationText, setPaginationText] = useState('Показать больше')
   const [historyItems, setHistoryItems] = useState([
@@ -64,7 +64,98 @@ function MainPage({setPageToRender}) {
       },
       id: 4
     },
+    {
+      name: "Футболка",
+      cost: "4000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '05',
+        year: '2023',
+      },
+      id: 5
+    },
+    {
+      name: "Футболка",
+      cost: "8000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '04',
+        year: '2023',
+      },
+      id: 6
+    },
+    {
+      name: "Футболка",
+      cost: "20000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '03',
+        year: '2023',
+      },
+      id: 7
+    },
+    {
+      name: "Футболка",
+      cost: "17000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '02',
+        year: '2023',
+      },
+      id: 8
+    },
+    {
+      name: "Футболка",
+      cost: "12000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '01',
+        year: '2023',
+      },
+      id: 9
+    },
+    {
+      name: "Футболка",
+      cost: "5000",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '08',
+        year: '2023',
+      },
+      id: 10
+    },
+    {
+      name: "Футболка",
+      cost: "13982",
+      quantity: 1,
+      date: {
+        day: '24',
+        month: '00',
+        year: '2023',
+      },
+      id: 11
+    },
   ])
+
+  useEffect(() => {
+    const tempMoneySpentInAMonths = {year: moneySpentInAMonths.year, months: {}}
+    historyItems.forEach((item) => {
+      if (item.date.year === moneySpentInAMonths.year) {
+        if (Object.keys(tempMoneySpentInAMonths.months).includes(item.date.month)) {
+          tempMoneySpentInAMonths.months[item.date.month] += Number(item.cost)
+        } else {
+          tempMoneySpentInAMonths.months[item.date.month] = Number(item.cost)
+        }
+      }
+    })
+    setMoneySpentInAMonths(tempMoneySpentInAMonths)
+  }, [historyItems, moneySpentInAMonths.year, setMoneySpentInAMonths])
 
   const addHistoryItem = (newItem) => {
     const newDate = {

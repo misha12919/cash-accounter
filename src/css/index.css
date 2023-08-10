@@ -16,6 +16,7 @@
   --transition-time: 0.2s;
   --very-big-font-size: 35px;
   --big-font-size: 25px;
+  --normal-font-size: 20px;
   scroll-behavior: smooth;
 }
 
