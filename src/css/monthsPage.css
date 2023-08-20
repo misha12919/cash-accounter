@@ -19,12 +19,24 @@
   border-radius: 20px;
 }
 
+.graph--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 25px;
+}
+
 .graph__title {
   grid-column: 1/4;
   justify-self: center;
-  height: 100%;
   color: var(--primary-color);
   font-size: var(--very-big-font-size);
+}
+
+.graph__empry-text {
+  color: var(--primary-color);
+  font-size: var(--big-font-size);
 }
 
 .graph__legend-money-title {
@@ -68,7 +80,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 10px;
+  padding: 0 40px 10px;
 }
 
 .graph__legend-months-value__item {
@@ -76,29 +88,51 @@
   font-size: var(--big-font-size);
 }
 
-.graph__columns {
+.graph__inner {
+  display: flex;
+  align-items: center;
+}
+
+.graph__inner__arrow {
+  width: 60px;
+  height: 60px;
+  fill: var(--primary-color);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.graph__inner__arrow--left {
+  transform: rotate(180deg);
+}
+
+.graph__inner__columns {
+  align-self: flex-end;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
   gap: 20px;
   width: 100%;
   padding: 0;
-  overflow: hidden;
-  flex-wrap: wrap;
   padding-bottom: 10px;
 }
 
-.graph__columns__item {
+.graph__inner__columns__item {
   position: relative;
   width: 100px;
   background-color: var(--primary-color);
 }
 
-.graph__columns__item__value {
+.graph__inner__columns__item__value {
   position: absolute;
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
   color: var(--primary-color);
   font-size: var(--normal-font-size);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none;
 }

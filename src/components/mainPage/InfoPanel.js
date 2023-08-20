@@ -31,9 +31,11 @@ export const InfoPanel = ({historyItems, getDateNow, setNumberOfItemsToShow, set
 
     return [countMoneySpendInADay, 
       monthsList[`${getDateNow().slice(0,4)}.${Number(getDateNow().slice(5,7))}`] ? monthsList[`${getDateNow().slice(0,4)}.${Number(getDateNow().slice(5,7))}`] : 0, 
-      Math.round(averageMoneySpendInAMonths/Object.keys(monthsList).length)]
+      historyItems.length > 0 ? Math.round(averageMoneySpendInAMonths/Object.keys(monthsList).length) : 0]
   }
 
+
+  console.log(countAmountOfMoneySpent())
   return (
     <div className="info-panel" id='info-panel'>
       <div className="info-panel__title">Общая информация:</div>
